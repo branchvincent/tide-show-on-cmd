@@ -26,5 +26,4 @@ set -gx tide_show_kubectl_on kubectl helm kubens kubectx stern
 
 ## Caveats
 
-Note, this implementation is very naive compared to Powerlevel10k.
-The current commandline is only queried when a space is entered.
+Note, this implementation is very naive compared to Powerlevel10k as the current commandline is only queried when a space is entered.

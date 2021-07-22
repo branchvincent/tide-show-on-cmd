@@ -14,6 +14,10 @@ function $func --description (functions --details --verbose $func)[5]
 end" | source
 end
 
+function _tide_show_on_cmd_clear --on-event fish_preexec --on-event fish_cancel
+    set -e (set -n | string match '_tide_show_*') 2>/dev/null
+end
+
 function _tide_show_on_cmd_uninstall --on-event tide_show_on_cmd_uninstall
     bind --erase " "
 end
