@@ -4,6 +4,8 @@
 
 A [Tide](https://github.com/IlanCosman/tide) extension to enable [Powerlevel10k](https://github.com/romkatv/powerlevel10k)'s awesome [`show on command`](https://github.com/romkatv/powerlevel10k#show-on-command) feature.
 
+![demo](.github/demo.gif)
+
 ## Installation
 
 ```shell
