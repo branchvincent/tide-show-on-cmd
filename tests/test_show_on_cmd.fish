@@ -1,25 +1,25 @@
-# RUN: %fish %s
+#RUN: %fish -i %s
 
-set -gx tide_show_kubectl_on kubectl
+set -gx tide_show_kubectl_on kubectl stern
 
-set -l mocks '
-mock type "-q kubectl" true
 mock commandline -poc printf
+set -l mock_item '
+mock type "-q kubectl" true
 mock kubectl "config view --minify --output" "echo context/namespace"
+_tide_item_kubectl
 '
 
-fish -ic "
-$mocks
 mock commandline -t 'echo notkubectl'
 _tide_show_on_cmd
-_tide_item_kubectl
-"
+fish -c $mock_item
 # CHECK:
 
-fish -ic "
-$mocks
 mock commandline -t 'echo kubectl'
 _tide_show_on_cmd
-_tide_item_kubectl
-"
+fish -c $mock_item
+# CHECK: {{.*⎈ context/namespace}}
+
+mock commandline -t 'echo stern'
+_tide_show_on_cmd
+fish -c $mock_item
 # CHECK: {{.*⎈ context/namespace}}
